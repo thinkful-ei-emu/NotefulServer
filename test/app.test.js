@@ -96,7 +96,42 @@ describe('server responses properly',()=>{
       });
       
     });
-    context('PATCH request',()=>{});
+    context('PATCH request',()=>{
+      it('can change notes name',()=>{
+        return request(app)
+          .patch('/notes/1')
+          .set('Content-type','application/json')
+          .send({name:'changed name'})
+          .expect(201)
+          .expect((results)=>{
+            expect(results.body.name==='changed name');
+          });
+      });
+      it('can change folders name',()=>{
+        return request(app)
+          .patch('/folders/1')
+          .set('Content-type','application/json')
+          .send({name:'changed name'})
+          .expect(201)
+          .expect((results)=>{
+            expect(results.body.name==='changed name');
+          });
+      });
+      it('responses 404 if invalid folder',()=>{
+        return request(app)
+          .patch('/folders/asd')
+          .set('Content-type','application/json')
+          .send({name:'changed name'})
+          .expect(404);
+      });
+      it('responses 404 if invalid note',()=>{
+        return request(app)
+          .patch('/folders/asd')
+          .set('Content-type','application/json')
+          .send({name:'changed name'})
+          .expect(404);
+      });
+    });
     context('DELETE request',()=>{
       it('delete note success',()=>{
         return request(app)

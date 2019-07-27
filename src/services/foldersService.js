@@ -12,7 +12,7 @@ module.exports = {
   deleteFolder(db,id){
     return db('folders').where({id}).delete();
   },
-  updateFolder(db,id,newName){
-    return db('folders').update({newName}).where({id}).returning('*');
+  updateFolder(db,id,name){
+    return db('folders').update({name}).where({id}).returning('*');
   }
 };
