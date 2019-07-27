@@ -1,0 +1,11 @@
+module.exports=()=>[
+  {
+    name:'folder1',
+  },
+  {
+    name:'folder2',
+  },
+  {
+    name:'folder3',
+  }
+];
